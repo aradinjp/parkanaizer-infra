@@ -2,20 +2,23 @@ provider "azurerm" {
   features {}
 }
 
+#crate resource group
 resource "azurerm_resource_group" "example" {
   name     = "grupa-2-apps"
   location = "Poland Central"
 }
 
+#create virtual network
 resource "azurerm_virtual_network" "example" {
-  name                = "gr-2-vn"
+  name                = "gr-2-vnet"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
   address_space       = ["10.20.0.0/16"]
 }
 
+#create subnet
 resource "azurerm_subnet" "example" {
-  name                 = "gr-2-sn"
+  name                 = "gr-2-subnet"
   resource_group_name  = azurerm_resource_group.example.name
   virtual_network_name = azurerm_virtual_network.example.name
   address_prefixes     = ["10.20.2.0/24"]
@@ -36,7 +39,7 @@ resource "azurerm_private_dns_zone" "example" {
 }
 
 resource "azurerm_postgresql_flexible_server" "example" {
-  name                          = "grupa-2-psqlflexibleserver"
+  name                          = "grupa-2-PostgreSQL"
   resource_group_name           = azurerm_resource_group.example.name
   location                      = azurerm_resource_group.example.location
   version                       = "13"
