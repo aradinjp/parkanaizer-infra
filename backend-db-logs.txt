@@ -1,0 +1,16 @@
+!/:na]
+2024-07-25T13:35:48.908365369Z at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar!/:na]
+2024-07-25T13:35:48.908369708Z at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+2024-07-25T13:35:48.908374246Z at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+2024-07-25T13:35:48.908378554Z at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:46) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+2024-07-25T13:35:48.908382812Z ... 45 common frames omitted
+2024-07-25T13:35:48.908387180Z Caused by: java.net.UnknownHostException: grupa-2-psqlflexibleserver-m.postgres.database.azure.com
+2024-07-25T13:35:48.908391719Z at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:567) ~[na:na]
+2024-07-25T13:35:48.908396077Z at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+2024-07-25T13:35:48.908400736Z at java.base/java.net.Socket.connect(Socket.java:751) ~[na:na]
+2024-07-25T13:35:48.908410865Z at org.postgresql.core.PGStream.createSocket(PGStream.java:243) ~[postgresql-42.7.3.jar!/:42.7.3]
+2024-07-25T13:35:48.908415453Z at org.postgresql.core.PGStream.<init>(PGStream.java:98) ~[postgresql-42.7.3.jar!/:42.7.3]
+2024-07-25T13:35:48.908419701Z at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:136) ~[postgresql-42.7.3.jar!/:42.7.3]
+2024-07-25T13:35:48.908424219Z at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:262) ~[postgresql-42.7.3.jar!/:42.7.3]
+2024-07-25T13:35:48.908428628Z ... 59 common frames omitted
+2024-07-25T13:35:48.908432746Z 
