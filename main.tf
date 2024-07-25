@@ -85,13 +85,8 @@ resource "azurerm_container_app" "backend" {
     container {
       name   = "backend-container-m"
       image  = "parkanizeracr2024.azurecr.io/grupa2/parkanizer-backend:8"
-      cpu    = 0.25
-      memory = "0.5Gi"
-
-      ports {
-        port     = 8080
-        protocol = "TCP"
-      }
+      cpu    = 2
+      memory = "4Gi"
 
       env {
         name  = "SPRING_DATASOURCE_URL"
@@ -122,7 +117,7 @@ resource "azurerm_container_app" "frontend" {
 
   ingress {
     external_enabled = true
-    target_port = 80 
+    target_port = 3000 
 
     traffic_weight {
       percentage = 100
@@ -140,13 +135,8 @@ resource "azurerm_container_app" "frontend" {
     container {
       name   = "frontend-container-m"
       image  = "parkanizeracr2024.azurecr.io/grupa2/parkanizer-frontend:8"
-      cpu    = 0.25
-      memory = "0.5Gi"
-
-      ports {
-        port     = 80
-        protocol = "TCP"
-      }
+      cpu    = 2
+      memory = "4Gi"
       
       env {
         name  = "REACT_APP_PROTOCOL"
@@ -154,7 +144,7 @@ resource "azurerm_container_app" "frontend" {
       }
       env {
         name  = "REACT_APP_HOST"
-        value = "backend"
+        value = "backend-container-m"
       }
       env {
         name  = "REACT_APP_PORT"
@@ -197,7 +187,7 @@ resource "azurerm_lb_backend_address_pool" "frontend_pool" {
 resource "azurerm_lb_probe" "frontend_probe" {
   name                = "frontend-probe"
   loadbalancer_id     = azurerm_lb.frontend.id
-  port                = 80
+  port                = 3000
   protocol            = "Http"
   request_path        = "/"
 }
@@ -206,8 +196,8 @@ resource "azurerm_lb_rule" "frontend_rule" {
   name                           = "frontend-rule"
   loadbalancer_id                = azurerm_lb.frontend.id
   protocol                       = "Tcp"
-  frontend_port                  = 80
-  backend_port                   = 80
+  frontend_port                  = 3000
+  backend_port                   = 3000
   disable_outbound_snat          = true
   frontend_ip_configuration_name = "frontend-ip"
   probe_id                       = azurerm_lb_probe.frontend_probe.id
